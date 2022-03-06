@@ -1,0 +1,14 @@
+.div{
+    border: 2px solid black;
+    width: 250px;
+}
+.img{
+    width: 200px;
+    height: 200px;
+}
+a:link, a:visited, a:active {
+    text-decoration:none;
+}
+.name{
+    color: red;
+}
