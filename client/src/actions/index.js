@@ -26,14 +26,15 @@ export function searchByName(name){
         try{
             console.log(name)
             const response = await axios.get(`http://localhost:3001/pokemons/?name=${name}`)
+            console.log('ACTION RESPONSE',response)
             let arr = []
+            console.log('ACTION',arr)
             arr.push(response.data)
             return dispatch({
                 type: 'SEARCH_BY_NAME',
-                payload: arr
+                payload: arr.length > 0 ? arr : []
             })
         }catch(e){
-            console.log('error')
             alert('Pokemon no encontrado!')
         }
     }
@@ -90,11 +91,59 @@ export function goBackDetail(){
     }
 }
 
-// export function nameSearchBar(name){
-//     return async function(dispatch){
-//         return dispatch({
-//             type: 'NAME_SEARCH_BAR',
-//             payload: name,
-//         })
-//     }
-// }
+export function filterType(payload){
+    return async function(dispatch){
+        try{
+            return dispatch({
+                type: 'FILTER_TYPE',
+                payload
+            })
+        }catch(e){
+            console.log(e)
+        }
+    }
+}
+
+export function reinicioState(){
+    return async function(dispatch){
+        try{
+            return dispatch({
+                type: 'RELOAD_STATE',
+                
+            })
+        }catch{
+
+        }
+    }
+}
+
+
+export function filterOrigin(payload){
+    return async function (dispatch){
+        try{
+            return dispatch({
+                type: 'ORIGIN',
+                payload,
+            })
+        }catch(e){
+            console.log(e)
+        }
+    }
+} 
+
+export function postPokemon(pokemon){
+    return async function(dispatch){
+        try{
+            const response = await axios.post('http://localhost:3001/pokemon',pokemon)
+            let arr = []
+            arr.push(response.data)
+            console.log('CREATE POST',arr)
+            dispatch({
+                type:'POST_POKEMON',
+                payload: arr
+            })
+        }catch(e){
+            console.log(e)
+        }
+    }
+}

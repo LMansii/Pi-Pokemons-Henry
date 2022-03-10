@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useParams } from 'react-router-dom';
 import logo from '../../img/pokeball_PNG.png'
 import s from './Detail.module.css'
+import Loading from '../Loading/Loading';
 function Detail() {
     const { id } = useParams()
     const detail = useSelector((state) => state.detail)
@@ -32,11 +33,13 @@ function Detail() {
                         }
                     </div>
                     <NavLink to='/home'>
-                        <img src={logo} className={s.logo} alt="" srcset="" />
+                        <img src={logo} className={s.logo} alt="" srcSet={`${logo}-1.5x.png 1.5x, ${logo}-2x.png 2x`} />
                     </NavLink>
                 </div>
             ) : (
-                <div>Loading</div>
+                <div>
+                    <Loading/>
+                </div>
             )
             }
         </div >

@@ -8,12 +8,13 @@ router.get('/',async (req,res) => {
     // res.send(response);
     try{
         const {name} = req.query;//Capturo el valor name
+        console.log(name)
         let response = await allPokemonApiDb(); //guardo la informacion de la api y db
         if(name){//si viene name por query desarrollo la siguiente logica
             const nameLower = name.toLowerCase() //coonvierto en mayuscula el nombre para evitar posibles errores
             let pokemonName = response.find((e) => e.name.toLowerCase().includes(nameLower)) //lo busco con un find pero tambien lo podria hacer con un filter
-            if(pokemonName.length == 0){ //si no tengo nada en la varibale pokemonName significa que no hubo concidencias por lo tanto tiro error 404
-                res.status(404).send('No se encontro el pokemon');
+            if(!pokemonName){ //si no tengo nada en la varibale pokemonName significa que no hubo concidencias por lo tanto tiro error 404
+                res.status(404).send(null);
             }else{
                 res.status(200).send(pokemonName); //si encuentra el valor lo manda 
             }

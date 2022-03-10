@@ -5,7 +5,7 @@ import {searchByName} from '../../actions/index'
 function SearchBar() {
     const dispatch = useDispatch()
     const [pokemon, setPokemon] = useState('');
-    
+
     function handleChange(e){
         e.preventDefault();
         setPokemon(e.target.value)
@@ -13,7 +13,6 @@ function SearchBar() {
     function handleSubmit(e){
         e.preventDefault();
         dispatch(searchByName(pokemon))
-        //dispatch(nameSearchBar(pokemon))
     }
     
     return (
