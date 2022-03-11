@@ -1,15 +1,89 @@
-.container{
-    border: 2px black solid;
-    width: 300px;
-    height: 800px;
+*{
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto", sans-serif;
 }
-.input{
-    border: 1px solid black;
+body {
+    background-color: #fafafa;
+  }
+
+.container {
+  border: 2px black solid;
+  border-radius: 15px;
+  box-shadow: 0px 35px 50px 5px #1b1c1b;
+  width: 400px;
+  height: 650px;
+  display: flex;
+  align-items: center;
+  margin-left: 700px;
+  margin-top: 100px;
+}
+.input {
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 180px;
+  height: 30px;
+  text-align: center;
+}
+.label {
+  font-size: 13px;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+
+.divTypes{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.hijoDivTypes{
+    flex-grow: 1;
+}
+.divTypemap{
+    display: flex;
+    gap: 0.2rem;
+    align-items: center;
+}
+.todosInputs{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.title{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.goBack{
     border-radius: 5px;
-    width: 180px;
+    width: 60px;
     height: 30px;
-    text-align: center
+    color: #fff;
+    background-color: #1b1c1b;
+    border-color: #1b1c1b;
 }
-.label{
-    font-size: 13px;
+.btnCreate{
+    border-radius: 5px;
+    width: 60px;
+    height: 30px;
+    color: #fff;
+    background-color: #1b1c1b;
+    border-color: #1b1c1b;
+}
+
+.btns{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

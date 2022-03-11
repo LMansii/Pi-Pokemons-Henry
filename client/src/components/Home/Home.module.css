@@ -39,3 +39,15 @@ body {
   background-color: #2e302e;
   border-color: #2e302e;
 }
+
+.contentSearReiForm{
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+.contentFilters{
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 5rem;
+}

@@ -18,14 +18,15 @@ function Detail() {
         <div>
             <h1>DETAIL</h1>
             {detail.length ? (
-                <div>
-                    <img src={detail[0].img} alt="" />
+                <div className={s.content}>
+                    <img className={s.img} src={detail[0].img} alt="" />
                     <h1>{detail[0].name[0].toUpperCase()+detail[0].name.slice(1)}</h1>
                     <h6>ID: {detail[0].id}</h6>
                     <h5>Life: {detail[0].life}</h5>
                     <h5>Attack: {detail[0].attack}</h5>
                     <h5>Defense: {detail[0].defense}</h5>
                     <h5>Speed: {detail[0].speed}</h5>
+                    <h5>TYPES:</h5>
                     <div>
                         {detail[0].inDB
                             ? detail[0].types.map((t) => <div key={++divKey}>{t.name[0].toUpperCase()+ t.name.slice(1)}</div>)
