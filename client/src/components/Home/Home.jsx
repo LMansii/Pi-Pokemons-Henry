@@ -71,13 +71,14 @@ function Home() {
                     </div>
                 ) : (
                     <div>
-                        <button onClick={(e) => {handleReinicio(e)}}>Reinico</button>
+                        <button className={s.reinicio} onClick={(e) => {handleReinicio(e)}}>Reinico</button>
                         <div>
                             <SearchBar />
                         </div>
                         <div>
                             <NavLink to='/create'>
-                            <h1>FORMULARIO</h1>
+                            <button className={s.formulario}>FORMULARIO</button>
+                            {/* <h1>FORMULARIO</h1> */}
                             </NavLink>
                         </div>
                         {/* ----------- ORDENAMIENTO AZ - ZA // TOP ATTACK - LOW ATTACK ----------- */}

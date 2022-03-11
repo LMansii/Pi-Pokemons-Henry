@@ -3,8 +3,39 @@
   padding: 0;
   font-family: "Roboto", sans-serif;
 }
+body {
+  background-color: #fafafa;
+}
 .contenedorcard {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  width: calc((110% - 500px) / 1);
+  margin-left: 153px;
+}
+
+.reinicio {
+  border-radius: 5px;
+  width: 60px;
+  height: 30px;
+  color: #fff;
+  background-color: #1b1c1b;
+  border-color: #1b1c1b;
+}
+.reinicio:hover{
+  background-color: #2e302e;
+  border-color: #2e302e;
+}
+
+.formulario {
+  border-radius: 5px;
+  width: 100px;
+  height: 30px;
+  color: #fff;
+  background-color: #1b1c1b;
+  border-color: #1b1c1b;
+}
+.formulario:hover{
+  background-color: #2e302e;
+  border-color: #2e302e;
 }

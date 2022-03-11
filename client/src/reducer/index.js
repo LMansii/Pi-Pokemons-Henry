@@ -24,16 +24,42 @@ function rootReducer(state = initialState, action) {
                 pokemons: state.auxPokemons
             }
         }
+        case 'GET_DETAIL_BACK':{
+            return{
+                ...state,
+                detail: action.payload,
+            }
+        }
         case 'GET_TYPES':
             return {
                 ...state,
                 types: action.payload
             }
         case 'GET_DETAIL':
-            //const detaill = state.pokemons
+            // const detaill = state.pokemons
+            // var arr = []
+            // var resultDetail = []
+            // //var response = []
+            // for (let i = 0; i < detaill.length; i++) {
+            //     console.log(detaill[i].id)
+            //     if(typeof(detaill[i].id) === 'string'){
+            //         //arr.push(detaill[i])
+            //         //console.log('ARRAY CON STRING',arr)
+            //         //resultDetail = arr.filter((p) => p.id === action.payload)
+            //         //console.log('RESULTADOOOOOOO: ',resultDetail)
+            //         console.log('que onda')
+            //     }else if(typeof(detaill[i].id) === 'number'){
+            //         arr.push(detaill[i])
+            //         resultDetail = arr.filter((p) => p.id === action.payload)
+            //         //console.log('RESULTADOOOOOOO: ',resultDetail)
+            //         //resultDetail = arr.filter((p) => p.id === action.payload)
+            //     }
+            //     console.log('ARRAY ',arr)
+            // }
+            const detailFilter = state.pokemons.filter((p) => typeof(p.id) === 'string' ? p.id === action.payload : p.id === parseInt(action.payload))
             return {
                 ...state,
-                detail: state.pokemons.filter((p) => p.id === action.payload || p.id === parseInt(action.payload))
+                detail: detailFilter
             }
         case 'GO_BACK_DETAIL':
             return {

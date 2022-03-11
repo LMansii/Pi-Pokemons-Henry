@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { getDetail } from '../../actions';
+import { getDetailBack } from '../../actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useParams } from 'react-router-dom';
 import logo from '../../img/pokeball_PNG.png'
@@ -11,7 +11,7 @@ function Detail() {
     console.log(detail)
     const dispatch = useDispatch()
     useEffect(() => {
-        dispatch(getDetail(id))
+        dispatch(getDetailBack(id))
     }, [dispatch, id])
     var divKey = Math.floor(100000 + Math.random() * 900000)
     return (
@@ -20,7 +20,7 @@ function Detail() {
             {detail.length ? (
                 <div>
                     <img src={detail[0].img} alt="" />
-                    <h1>{detail[0].name}</h1>
+                    <h1>{detail[0].name[0].toUpperCase()+detail[0].name.slice(1)}</h1>
                     <h6>ID: {detail[0].id}</h6>
                     <h5>Life: {detail[0].life}</h5>
                     <h5>Attack: {detail[0].attack}</h5>
@@ -28,8 +28,8 @@ function Detail() {
                     <h5>Speed: {detail[0].speed}</h5>
                     <div>
                         {detail[0].inDB
-                            ? detail[0].types.map((t) => <div key={++divKey}>{t.name}</div>)
-                            : detail[0].types.map((t) => <div key={++divKey}>{t}</div>)
+                            ? detail[0].types.map((t) => <div key={++divKey}>{t.name[0].toUpperCase()+ t.name.slice(1)}</div>)
+                            : detail[0].types.map((t) => <div key={++divKey}>{t[0].toUpperCase()+t.slice(1)}</div>)
                         }
                     </div>
                     <NavLink to='/home'>

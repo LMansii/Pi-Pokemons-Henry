@@ -30,15 +30,26 @@ router.get('/',async (req,res) => {
 router.get('/:id', async (req,res) => {
     try{
         const { id } = req.params;
-        
-        const responseApi = await allPokemonApiDb();
         if(id){
-            const idPokemon = await responseApi.filter((e) => e.id == parseInt(id))
+            const responseApi = await allPokemonApiDb();
+            const idPokemon = await responseApi.filter(e => typeof(e.id) === 'string' ? e.id == id : typeof(e.id) === 'number' ? e.id == Number(id) : console.log('hola'))
             idPokemon.length ? res.status(200).json(idPokemon) : res.status(404).send('No se encontro el pokemon (id)')
         }
     }catch(e){
         console.log(e);
     }
+    
+    // try{
+    //     const { id } = req.params;
+        
+    //     const responseApi = await allPokemonApiDb();
+    //     if(id){
+    //         const idPokemon = await responseApi.filter((e) => e.id == parseInt(id))
+    //         idPokemon.length ? res.status(200).json(idPokemon) : res.status(404).send('No se encontro el pokemon (id)')
+    //     }
+    // }catch(e){
+    //     console.log(e);
+    // }
     // const {id} = req.params;
     // const idParam = parseInt(id);
     // console.log(id)

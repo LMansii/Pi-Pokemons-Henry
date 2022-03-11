@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getAllPokemons, getTypes } from '../../actions'
 import { Link, useHistory } from 'react-router-dom'
 import { postPokemon } from '../../actions';
+import s from './Form.module.css'
 
 
 function validate(newPokemon) {
@@ -113,92 +114,100 @@ function Formulario() {
         history.push('/home')
     }
     return (
-        <div>
+        <div className={s.container}>
             <form onSubmit={((e) => handleSubmit(e))}>
                 <div>
                     <div>
                         <h1>Create NEW Pokemon</h1>
                     </div>
                     <div>
-                        <label>Nombre: </label>
+                        <label className={s.label} >Nombre: </label> <br />
                         <input
                             name='name'
                             type="text"
                             value={newPokemon.name}
+                            className={s.input}
                             onChange={((e) => handleInputChange(e))} />
                         {errors.name && <p color='red'>{errors.name}</p>}
                     </div>
 
                     <div>
-                        <label>Imagen: </label>
+                        <label className={s.label}>Imagen: </label><br />
                         <input
                             name='img'
                             type="url"
                             value={newPokemon.img}
+                            className={s.input}
                             onChange={((e) => handleInputChange(e))} />
                     </div>
 
                     <div>
-                        <label>Vida: </label>
+                        <label className={s.label}>Vida: </label><br />
                         <input
                             name='life'
                             type="number"
                             value={newPokemon.life}
+                            className={s.input}
                             onChange={((e) => handleInputChange(e))} />
                         {errors.life && <p color='red'>{errors.life}</p>}
                     </div>
 
                     <div>
-                        <label>Fuerza: </label>
+                        <label className={s.label}>Fuerza: </label><br />
                         <input
                             name='attack'
                             type="number"
                             value={newPokemon.attack}
+                            className={s.input}
                             onChange={((e) => handleInputChange(e))} />
                         {errors.attack && <p color='red'>{errors.attack}</p>}
                     </div>
 
                     <div>
-                        <label>Defensa: </label>
+                        <label className={s.label}>Defensa: </label><br />
                         <input
                             name='defense'
                             type="number"
                             value={newPokemon.defense}
+                            className={s.input}
                             onChange={((e) => handleInputChange(e))} />
                         {errors.defense && <p color='red'>{errors.defense}</p>}
                     </div>
 
                     <div>
-                        <label>Velocidad: </label>
+                        <label className={s.label}>Velocidad: </label><br />
                         <input
                             name='speed'
                             type="number"
                             value={newPokemon.speed}
+                            className={s.input}
                             onChange={((e) => handleInputChange(e))} />
                         {errors.speed && <p color='red'>{errors.speed}</p>}
                     </div>
 
                     <div>
-                        <label>Altura: </label>
+                        <label className={s.label}>Altura: </label><br />
                         <input
                             name='height'
                             type="number"
                             value={newPokemon.height}
+                            className={s.input}
                             onChange={((e) => handleInputChange(e))} />
                         {errors.height && <p color='red'>{errors.height}</p>}
                     </div>
 
                     <div>
-                        <label>Peso: </label>
+                        <label className={s.label}>Peso: </label><br />
                         <input
                             name='weight'
                             type="number"
                             value={newPokemon.weight}
+                            className={s.input}
                             onChange={((e) => handleInputChange(e))} />
                         {errors.weight && <p color='red'>{errors.weight}</p>}
                     </div>
                 </div>
-
+                <br />
                 <div>
                     {types?.map((type, index) => (
                         <div key={index}>

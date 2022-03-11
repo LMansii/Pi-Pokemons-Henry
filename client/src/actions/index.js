@@ -21,6 +21,20 @@ export function getDetail(id){
     }
 }
 
+export function getDetailBack(id){
+    return async function(dispatch){
+        try{
+            const response = await axios.get(`http://localhost:3001/pokemons/${id}`)
+            return dispatch({
+                type: 'GET_DETAIL_BACK',
+                payload: response.data
+            })
+        }catch(e){
+            console.log(e)
+        }
+    }
+}
+
 export function searchByName(name){
     return async function(dispatch){
         try{
