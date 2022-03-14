@@ -1,17 +1,12 @@
 import React from 'react';
-import imageLoading from '../../img/pokemoGIFLoading.gif'
-import { reinicioState} from "../../actions";
-import {useDispatch} from 'react-redux'
+import imageLoading from '../../img/pokemoGIFLoading2.gif'
+import s from './Loading.module.css'
 function Loading(){
-    const dispatch = useDispatch()
-    function handleReset(e){
-        e.preventDefault();
-        dispatch(reinicioState())
-    }
+    //COMPONENTE DE CARGA DE DETALLES
     return (
-        <div>
-            <img src={imageLoading} alt="Loading..." srcSet={`${imageLoading}-1.5x.png 1.5x, ${imageLoading}-2x.png 2x`}/>
-            <button onClick={(e)=> {handleReset(e)}}>Volver</button>
+        <div className={s.container}>
+            <img className={s.img} src={imageLoading} alt="Loading..." srcSet={`${imageLoading}-1.5x.png 1.5x, ${imageLoading}-2x.png 2x`}/>
+            <p>Loading details...</p>
         </div>
     )
 }

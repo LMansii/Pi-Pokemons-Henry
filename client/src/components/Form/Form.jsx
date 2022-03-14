@@ -7,25 +7,71 @@ import s from './Form.module.css'
 
 
 function validate(newPokemon) {
-    let errors = {};
-    if (!newPokemon.name) {
+    let errors = { valido: true };
+    //INPUT NAME
+    if (newPokemon.name === '') {
         errors.name = 'Name is required'
-    } else if (!newPokemon.life || isNaN(newPokemon.life)) {
+        errors.valido = false
+    } else if (!/^[a-zA]{2,20}$/.test(newPokemon.name)) {
+        errors.name = 'Must have minimum 2 characters!'
+        errors.valido = false
+    }
+    //INPUT IMAGE
+    if (newPokemon.img === '') {
+        errors.img = 'Image is required'
+        errors.valido = false
+    }
+
+    if (newPokemon.life === '') {
         errors.life = 'Life is required'
-    } else if (!newPokemon.attack || isNaN(newPokemon.attack)) {
+        errors.valido = false
+    } else if (newPokemon.life <= 0) {
+        errors.life = 'Life must be greater than 0'
+        errors.valido = false
+    }
+
+    if (newPokemon.attack === '') {
         errors.attack = 'Attack is required'
-    } else if (!newPokemon.speed || isNaN(newPokemon.speed)) {
-        errors.speed = 'Speed is required'
-    } else if (!newPokemon.defense || isNaN(newPokemon.defense)) {
+        errors.valido = false
+    } else if (newPokemon.attack <= 0) {
+        errors.attack = 'Attack must be greater than 0'
+        errors.valido = false
+    }
+
+    if (newPokemon.defense === '') {
         errors.defense = 'Defense is required'
-    } else if (!newPokemon.height || isNaN(newPokemon.height)) {
-        errors.height = 'Height  is required'
-    } else if (!newPokemon.weight || isNaN(newPokemon.weight)) {
-        errors.weight = 'Weight  is required'
-    } else if (!/^[1-9][0-9]?$|^100$/g.test(newPokemon.life)) {
-        errors.life = 'Life is required and must be in a range from 1 - 100'
-    } else if (!newPokemon.type) {
-        errors.type = 'Type is required';
+        errors.valido = false
+    } else if (newPokemon.defense <= 0) {
+        errors.defense = 'Defense must be greater than 0'
+        errors.valido = false
+    }
+
+    if (newPokemon.speed === '') {
+        errors.speed = 'Speed is required'
+        errors.valido = false
+    } else if (newPokemon.speed <= 0) {
+        errors.speed = 'Speed must be greater than 0'
+        errors.valido = false
+    }
+
+    if (newPokemon.height === '') {
+        errors.height = 'Height is required'
+        errors.valido = false
+    } else if (newPokemon.height <= 0) {
+        errors.height = 'Height must be greater than 0'
+        errors.valido = false
+    }
+
+    if (newPokemon.weight === '') {
+        errors.weight = 'Weight is required'
+        errors.valido = false
+    } else if (newPokemon.weight <= 0) {
+        errors.weight = 'Weight must be greater than 0'
+        errors.valido = false
+    }
+
+    if(newPokemon.type.length === ''){
+        errors.valido = false
     }
     return errors;
 }
@@ -104,6 +150,9 @@ function Formulario() {
     }
     return (
         <div className={s.container}>
+            {/* <div>
+                <img src={newPokemon.img} alt="IMG NOT FOUND" />
+            </div> */}
             <form onSubmit={((e) => handleSubmit(e))}>
                 <div>
                     <div className={s.title}>
@@ -118,7 +167,7 @@ function Formulario() {
                                 value={newPokemon.name}
                                 className={s.input}
                                 onChange={((e) => handleInputChange(e))} />
-                            {errors.name && <p color='red'>{errors.name}</p>}
+                            {errors.name && <p className={s.errors}>{errors.name}</p>}
                         </div>
 
                         <div>
@@ -129,6 +178,7 @@ function Formulario() {
                                 value={newPokemon.img}
                                 className={s.input}
                                 onChange={((e) => handleInputChange(e))} />
+                            {errors.img && <p className={s.errors}>{errors.img}</p>}
                         </div>
 
                         <div>
@@ -136,10 +186,11 @@ function Formulario() {
                             <input
                                 name='life'
                                 type="number"
+                                min="1"
                                 value={newPokemon.life}
                                 className={s.input}
                                 onChange={((e) => handleInputChange(e))} />
-                            {errors.life && <p color='red'>{errors.life}</p>}
+                            {errors.life && <p className={s.errors}>{errors.life}</p>}
                         </div>
 
                         <div>
@@ -150,7 +201,7 @@ function Formulario() {
                                 value={newPokemon.attack}
                                 className={s.input}
                                 onChange={((e) => handleInputChange(e))} />
-                            {errors.attack && <p color='red'>{errors.attack}</p>}
+                            {errors.attack && <p className={s.errors}>{errors.attack}</p>}
                         </div>
 
                         <div>
@@ -161,7 +212,7 @@ function Formulario() {
                                 value={newPokemon.defense}
                                 className={s.input}
                                 onChange={((e) => handleInputChange(e))} />
-                            {errors.defense && <p color='red'>{errors.defense}</p>}
+                            {errors.defense && <p className={s.errors}>{errors.defense}</p>}
                         </div>
 
                         <div>
@@ -172,7 +223,7 @@ function Formulario() {
                                 value={newPokemon.speed}
                                 className={s.input}
                                 onChange={((e) => handleInputChange(e))} />
-                            {errors.speed && <p color='red'>{errors.speed}</p>}
+                            {errors.speed && <p className={s.errors}>{errors.speed}</p>}
                         </div>
 
                         <div>
@@ -183,7 +234,7 @@ function Formulario() {
                                 value={newPokemon.height}
                                 className={s.input}
                                 onChange={((e) => handleInputChange(e))} />
-                            {errors.height && <p color='red'>{errors.height}</p>}
+                            {errors.height && <p className={s.errors}>{errors.height}</p>}
                         </div>
 
                         <div>
@@ -194,7 +245,7 @@ function Formulario() {
                                 value={newPokemon.weight}
                                 className={s.input}
                                 onChange={((e) => handleInputChange(e))} />
-                            {errors.weight && <p color='red'>{errors.weight}</p>}
+                            {errors.weight && <p className={s.errors}>{errors.weight}</p>}
                         </div>
                     </div>
                 </div>
@@ -205,30 +256,30 @@ function Formulario() {
                             <div className={s.divTypemap}>
                                 <label>{type.name}</label>
                                 <input
+                                    className={s.inputCheck}
                                     type="checkbox"
                                     name={type.id}
                                     value={type.name}
                                     onChange={((e) => handleChangeType(e))} />
                             </div>
+                            
                         </div>
                     ))
                     }
                 </div>
+                {errors.type && <p className={s.errorsType}>{errors.type}</p>}
                 <div className={s.btns}>
-                    <div>
-                        <button type='submit' className={s.btnCreate}>
-                            Create
+                    <Link to='/home'>
+                        <button className={s.goBack}>
+                            Go Back!
                         </button>
+                    </Link>
 
-                        <div>
-                            <Link to='/home'>
-                                <button className={s.goBack}>
-                                    Go Back!
-                                </button>
-                            </Link>
-                        </div>
-                    </div>
+                    <button type='submit' disabled={!errors.valido} className={s.btnCreate}>
+                        Create
+                    </button>
                 </div>
+
             </form>
         </div>
     )

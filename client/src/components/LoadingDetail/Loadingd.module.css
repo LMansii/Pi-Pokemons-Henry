@@ -1,0 +1,20 @@
+.container {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.img {
+  width: 500px;
+  height: 500px;
+}
+.button {
+  border-radius: 5px;
+  width: 150px;
+  height: 40px;
+  color: #fff;
+  background-color: #1b1c1b;
+  border-color: #1b1c1b;
+  font-size: 25px;
+}

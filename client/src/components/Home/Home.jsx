@@ -3,7 +3,8 @@ import { getAllPokemons, ordenamientoALPHA, goBackDetail, getTypes, filterType, 
 import { useDispatch, useSelector } from "react-redux";
 import SearchBar from "../SearchBar/SearchBar";
 import Card from "../Card/Card";
-import Loading from "../Loading/Loading";
+import Loadingd from "../LoadingDetail/Loadingd";
+import Pagination from "../Pagination/Pagination";
 import s from './Home.module.css'
 import { NavLink } from 'react-router-dom'
 function Home() {
@@ -16,6 +17,17 @@ function Home() {
     // eslint-disable-next-line no-unused-vars
     const [filterTypes, setFilterTypes] = useState('')
 
+
+    /* PAGINADO - ESTADOS LOCALES PARA LLEVAR UN CONTROL */
+    const [currentPage, setCurrentPage] = useState(1);
+    // eslint-disable-next-line no-unused-vars
+    const [pokemonsPerPage, setPokemonsPerPage] = useState(12);
+    const last = currentPage * pokemonsPerPage;
+    const first = last - pokemonsPerPage;
+    const allPagPokemons = allPokemons.slice(first,last)
+    const pagination = (numberOfPage) => {
+        setCurrentPage(numberOfPage)
+    }
     useEffect(() => {
         if (allPokemons.length > 0) {
             return 1
@@ -32,14 +44,8 @@ function Home() {
     //---------------- ORDENAMIENTO ---------------- 
     function handleOrdenamiento(e) {
         e.preventDefault();
-        // if (e.target.value === 'default') {
-        // dispatch(goBackDetail())
-        //dispatch(getAllPokemons())
-        // setOrdenamiento(`ordenado ${e.target.value}`)
-        // } else {
         dispatch(ordenamientoALPHA(e.target.value));
         setOrdenamiento(`ordenado ${e.target.value}`)
-        //}
     }
     //---------------- FILTRO POR TIPOS ---------------- 
     function handleFilterTypes(e) {
@@ -66,7 +72,7 @@ function Home() {
             {allPokemons.length === 0
                 ? (
                     <div>
-                        <Loading />
+                        <Loadingd />
                     </div>
                 ) : (
                     <div>
@@ -87,7 +93,6 @@ function Home() {
                                 <label> Ordenamientos: </label>
                                 <select defaultValue='Ordenamiento' onChange={(e) => { handleOrdenamiento(e) }}>
                                     <option value="Ordenamiento" disabled>---Ordenamiento---</option>
-                                    <option value="default">Default</option>
                                     <option value="az">A-Z</option>
                                     <option value="za">Z-A</option>
                                     <option value="attack">Top Attack</option>
@@ -120,8 +125,11 @@ function Home() {
                                 </select>
                             </div>
                         </div>
+                        <div>
+                            <Pagination allPokemons = {allPokemons.length}  pokemonsPerPage={pokemonsPerPage} pagination = {pagination}/>
+                        </div>
                         <div className={s.contenedorcard}>
-                            {allPokemons?.map((p) => {
+                            {allPagPokemons?.map((p) => {
                                 return (
                                     <Card
                                         id={p.id}

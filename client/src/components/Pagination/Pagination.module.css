@@ -1,0 +1,24 @@
+.container{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+.ul{
+    display: flex;
+    gap: 1rem;
+}
+.li{
+    list-style:none;
+}
+.button{
+    border-radius: 5px;
+    width: 60px;
+    height: 30px;
+    color: #fff;
+    background-color: #1b1c1b;
+    border-color: #1b1c1b;
+}
+.button:hover{
+    background-color: #2e302e;
+    border-color: #2e302e;
+}

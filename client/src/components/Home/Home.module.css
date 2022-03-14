@@ -43,7 +43,8 @@ body {
 .contentSearReiForm{
   margin-top: 1rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  gap: 30rem;
 }
 .contentFilters{
   margin-top: 30px;
