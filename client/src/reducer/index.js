@@ -135,7 +135,6 @@ function rootReducer(state = initialState, action) {
         }
         case 'FILTER_TYPE': {
             var filetByTypes = []
-            console.log(filetByTypes)
             if (action.payload === 'default') {
                 return {
                     ...state,
@@ -175,9 +174,7 @@ function rootReducer(state = initialState, action) {
             }
         }
         case 'POST_POKEMON': {
-            console.log(action.payload)
             let newpoke = [...state.pokemons.concat(action.payload)]
-            console.log('newpoke: ', newpoke)
             return {
                 ...state,
                 pokemons: newpoke

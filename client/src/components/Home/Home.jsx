@@ -68,7 +68,7 @@ function Home() {
 
     return (
         <div>
-            {console.log('ACA ESTAMOS', allPokemons)}
+            
             {allPokemons.length === 0
                 ? (
                     <div>

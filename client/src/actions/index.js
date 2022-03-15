@@ -36,11 +36,9 @@ export function getDetailBack(id){
 export function searchByName(name){
     return async function(dispatch){
         try{
-            console.log(name)
             const response = await axios.get(`http://localhost:3001/pokemons/?name=${name}`)
             console.log('ACTION RESPONSE',response)
             let arr = []
-            console.log('ACTION',arr)
             arr.push(response.data)
             return dispatch({
                 type: 'SEARCH_BY_NAME',
@@ -137,7 +135,6 @@ export function postPokemon(pokemon){
             const response = await axios.post('http://localhost:3001/pokemon',pokemon)
             let arr = []
             arr.push(response.data)
-            console.log('CREATE POST',arr)
             dispatch({
                 type:'POST_POKEMON',
                 payload: arr

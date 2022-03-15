@@ -12,11 +12,11 @@ body {
   border-radius: 15px;
   box-shadow: 0px 35px 50px 5px #1b1c1b;
   width: 400px;
-  height: 730px;
+  height: 750px;
   display: flex;
   align-items: center;
   margin-left: 700px;
-  margin-top: 60px;
+  margin-top: 50px;
 }
 .input {
   border: 1px solid black;
@@ -73,6 +73,10 @@ input[type="number"] {
     background-color: #1b1c1b;
     border-color: #1b1c1b;
 }
+.goBack:hover{
+  background-color: #2e302e;
+  border-color: #2e302e;
+}
 .btnCreate{
     border-radius: 5px;
     width: 60px;
@@ -80,6 +84,10 @@ input[type="number"] {
     color: #fff;
     background-color: #1b1c1b;
     border-color: #1b1c1b;
+}
+.btnCreate:hover{
+  background-color: #2e302e;
+  border-color: #2e302e;
 }
 
 .btns{

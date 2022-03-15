@@ -69,10 +69,6 @@ function validate(newPokemon) {
         errors.weight = 'Weight must be greater than 0'
         errors.valido = false
     }
-
-    if(newPokemon.type.length === ''){
-        errors.valido = false
-    }
     return errors;
 }
 
@@ -122,7 +118,6 @@ function Formulario() {
         } else {
             arrTypes.push(e.target.value)
         }
-        console.log('TIPOS ACA', arrTypes)
         setNewPokemon({
             ...newPokemon,
             type: arrTypes
@@ -131,22 +126,25 @@ function Formulario() {
 
     function handleSubmit(e) {
         e.preventDefault()
-        console.log(newPokemon, 'CREADO')
-        dispatch(postPokemon(newPokemon))
-        dispatch(getAllPokemons())
-        alert('Pokemon creado con Exito!')
-        setNewPokemon({
-            name: "",
-            img: '',
-            life: 0,
-            attack: 0,
-            defense: 0,
-            speed: 0,
-            height: 0,
-            weight: 0,
-            type: []
-        });
-        history.push('/home')
+        if (newPokemon.type.length === 0) {
+            alert('Select at least one Type!')
+        } else {
+            dispatch(postPokemon(newPokemon))
+            dispatch(getAllPokemons())
+            alert('Pokemon creado con Exito!')
+            setNewPokemon({
+                name: "",
+                img: '',
+                life: 0,
+                attack: 0,
+                defense: 0,
+                speed: 0,
+                height: 0,
+                weight: 0,
+                type: []
+            });
+            history.push('/home')
+        }
     }
     return (
         <div className={s.container}>
@@ -162,6 +160,7 @@ function Formulario() {
                         <div>
                             <label className={s.label} >Nombre: </label> <br />
                             <input
+                                placeholder='Nombre'
                                 name='name'
                                 type="text"
                                 value={newPokemon.name}
@@ -173,6 +172,7 @@ function Formulario() {
                         <div>
                             <label className={s.label}>Imagen: </label><br />
                             <input
+                                placeholder='Imagen'
                                 name='img'
                                 type="url"
                                 value={newPokemon.img}
@@ -262,12 +262,12 @@ function Formulario() {
                                     value={type.name}
                                     onChange={((e) => handleChangeType(e))} />
                             </div>
-                            
+
                         </div>
                     ))
                     }
                 </div>
-                {errors.type && <p className={s.errorsType}>{errors.type}</p>}
+                {newPokemon.type.length === 0 && <p className={s.errorsType}>Select at least one Type!</p>}
                 <div className={s.btns}>
                     <Link to='/home'>
                         <button className={s.goBack}>
