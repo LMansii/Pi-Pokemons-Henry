@@ -37,7 +37,6 @@ export function searchByName(name){
     return async function(dispatch){
         try{
             const response = await axios.get(`http://localhost:3001/pokemons/?name=${name}`)
-            console.log('ACTION RESPONSE',response)
             let arr = []
             arr.push(response.data)
             return dispatch({
@@ -108,8 +107,8 @@ export function reinicioState(){
                 type: 'RELOAD_STATE',
                 
             })
-        }catch{
-
+        }catch(e){
+            console.log(e)
         }
     }
 }

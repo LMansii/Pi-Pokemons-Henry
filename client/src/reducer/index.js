@@ -21,7 +21,7 @@ function rootReducer(state = initialState, action) {
         case 'RELOAD_STATE': {
             return {
                 ...state,
-                pokemons: state.auxPokemons
+                pokemons: state.reicio
             }
         }
         case 'GET_DETAIL_BACK': {
@@ -135,12 +135,6 @@ function rootReducer(state = initialState, action) {
         }
         case 'FILTER_TYPE': {
             var filetByTypes = []
-            if (action.payload === 'default') {
-                return {
-                    ...state,
-                    pokemons: state.auxPokemons,
-                }
-            }
             for (let i = 0; i < state.auxPokemons?.length; i++) {
                 if (state.auxPokemons[i].inDB) {
                     for (let j = 0; j < state.auxPokemons[i].types.length; j++) {
@@ -155,7 +149,6 @@ function rootReducer(state = initialState, action) {
                             filetByTypes.push(state.auxPokemons[i])
                             state.noTiene.push(['null'])
                         }
-
                     }
                 }
 

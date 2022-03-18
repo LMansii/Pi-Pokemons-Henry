@@ -3,7 +3,7 @@ const axios = require('axios');
 const { Pokemon, Type } = require('../db');
 
 var URL = 'https://pokeapi.co/api/v2/pokemon/?limit=40'
-//Informacion  de la API
+
 const types = async () => {
     try{
         const type = axios.get('http://localhost:3001/types')
@@ -11,6 +11,8 @@ const types = async () => {
         console.log(e)
     }
 }
+
+//Informacion  de la API
 const api = async () => {
     try{
         const responseData = (await axios.get(URL)).data.results; //traigo informacion de los 40 pokemones 
@@ -36,7 +38,7 @@ const api = async () => {
         //console.log(apiData)
         return apiData;
     }catch(e){
-        console.log('holaaaaaaaaaa',e)
+        console.log(e)
     }
 }
 
@@ -58,19 +60,6 @@ const dbInfo = async () => {
     }
 }
 
-// const idDB = async (id) => {
-//     console.log('FUNCION',id)
-
-//     try{
-//         return await Pokemon.findOne({
-//             where:{
-//                 id: id
-//             }
-//         })
-//     }catch(e){
-//         console.log(e)
-//     }
-// }
 
 const allPokemonApiDb = async () => {
     try{

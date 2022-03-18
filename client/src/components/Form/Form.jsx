@@ -12,8 +12,8 @@ function validate(newPokemon) {
     if (newPokemon.name === '') {
         errors.name = 'Name is required'
         errors.valido = false
-    } else if (!/^[a-zA]{2,20}$/.test(newPokemon.name)) {
-        errors.name = 'Must have minimum 2 characters!'
+    } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(newPokemon.name)) {
+        errors.name = 'Max 40 characters!'
         errors.valido = false
     }
     //INPUT IMAGE
@@ -96,7 +96,7 @@ function Formulario() {
         e.preventDefault()
         setNewPokemon({
             ...newPokemon,
-            [e.target.name]: e.target.value.toLowerCase(),
+            [e.target.name]: e.target.value,
             [e.target.type]: e.target.value,
             [e.target.life]: e.target.value,
             [e.target.attack]: e.target.value,

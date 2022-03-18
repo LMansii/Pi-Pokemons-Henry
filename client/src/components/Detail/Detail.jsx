@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { getDetailBack } from '../../actions';
+import { getDetailBack,goBackDetail } from '../../actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useParams } from 'react-router-dom';
 import logo from '../../img/pokeball_PNG.png'
@@ -11,6 +11,9 @@ function Detail() {
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(getDetailBack(id))
+        return (
+            dispatch(goBackDetail())
+        )
     }, [dispatch, id])
     var divKey = Math.floor(100000 + Math.random() * 900000)
     return (

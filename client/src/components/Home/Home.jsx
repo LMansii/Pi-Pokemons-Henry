@@ -1,5 +1,5 @@
 import { React, useEffect, useState } from "react";
-import { getAllPokemons, ordenamientoALPHA, goBackDetail, getTypes, filterType, reinicioState, filterOrigin } from "../../actions";
+import { getAllPokemons, ordenamientoALPHA, getTypes, filterType, reinicioState, filterOrigin } from "../../actions";
 import { useDispatch, useSelector } from "react-redux";
 import SearchBar from "../SearchBar/SearchBar";
 import Card from "../Card/Card";
@@ -16,8 +16,6 @@ function Home() {
     const [ordenamiento, setOrdenamiento] = useState('')
     // eslint-disable-next-line no-unused-vars
     const [filterTypes, setFilterTypes] = useState('')
-
-
     /* PAGINADO - ESTADOS LOCALES PARA LLEVAR UN CONTROL */
     const [currentPage, setCurrentPage] = useState(1);
     // eslint-disable-next-line no-unused-vars
@@ -38,9 +36,6 @@ function Home() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dispatch])
 
-    useEffect(() => {
-        dispatch(goBackDetail())
-    }, [dispatch])
     //---------------- ORDENAMIENTO ---------------- 
     function handleOrdenamiento(e) {
         e.preventDefault();
@@ -52,18 +47,19 @@ function Home() {
         e.preventDefault();
         setFilterTypes(e.target.value)
         dispatch(filterType(e.target.value))
+        setCurrentPage(1)
     }
 
     //---------------- Reinicio de state.pokemons ---------------- 
     function handleReinicio(e) {
         e.preventDefault();
         dispatch(reinicioState())
-        dispatch(getAllPokemons())
     }
     //---------------- ORIGEN API - DB ---------------- 
     function handlefilterOrigin(e) {
         e.preventDefault()
         dispatch(filterOrigin(e.target.value))
+        setCurrentPage(1)
     }
 
     return (
@@ -83,7 +79,7 @@ function Home() {
                             </div>
                             <div>
                                 <NavLink to='/create'>
-                                    <button className={s.formulario}>FORMULARIO</button>
+                                    <button className={s.formulario}>CREATE</button>
                                 </NavLink>
                             </div>
                         </div>
